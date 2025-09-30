@@ -17,7 +17,7 @@ You can find more details in our [Middleware'25 paper](TBA).
 
 Recipe project is available in the following repositories:
 
-[Recipe-protocols](TBA) which contains the implemented protocols.
+[Recipe-protocols]((https://github.com/TUM-DSE/recipe-protocols.git)) which contains the implemented protocols.
 
 [Recipe-proofs](TBA) which contains the security proofs of Recipe.
 
