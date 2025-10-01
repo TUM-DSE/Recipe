@@ -1,0 +1,1069 @@
+desc: (none)
+cmd: ./example_2
+time_unit: i
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=4023083
+mem_heap_B=72704
+mem_heap_extra_B=8
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=2
+#-----------
+time=4515656
+mem_heap_B=199686
+mem_heap_extra_B=113074
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=3
+#-----------
+time=4962202
+mem_heap_B=313528
+mem_heap_extra_B=218016
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=4
+#-----------
+time=5251972
+mem_heap_B=385324
+mem_heap_extra_B=286388
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=5
+#-----------
+time=5499422
+mem_heap_B=453770
+mem_heap_extra_B=343926
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=6
+#-----------
+time=5804411
+mem_heap_B=529122
+mem_heap_extra_B=415702
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=7
+#-----------
+time=6133239
+mem_heap_B=610298
+mem_heap_extra_B=493294
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=8
+#-----------
+time=6415693
+mem_heap_B=680122
+mem_heap_extra_B=559942
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=9
+#-----------
+time=6826581
+mem_heap_B=796508
+mem_heap_extra_B=655196
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=10
+#-----------
+time=7184870
+mem_heap_B=884800
+mem_heap_extra_B=739552
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=11
+#-----------
+time=7521470
+mem_heap_B=968032
+mem_heap_extra_B=818976
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=12
+#-----------
+time=7858070
+mem_heap_B=1051264
+mem_heap_extra_B=898400
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=13
+#-----------
+time=8194670
+mem_heap_B=1134496
+mem_heap_extra_B=977824
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=14
+#-----------
+time=8531270
+mem_heap_B=1217728
+mem_heap_extra_B=1057248
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=15
+#-----------
+time=8942945
+mem_heap_B=1319288
+mem_heap_extra_B=1154200
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=16
+#-----------
+time=9272603
+mem_heap_B=1430142
+mem_heap_extra_B=1228594
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=17
+#-----------
+time=9580929
+mem_heap_B=1506306
+mem_heap_extra_B=1301350
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=18
+#-----------
+time=9812211
+mem_heap_B=1563582
+mem_heap_extra_B=1355922
+mem_stacks_B=0
+heap_tree=detailed
+n6: 1563582 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 891696 0x401861: operator() (example_2.cc:40)
+  n1: 891696 0x401861: __invoke_impl<void, main(int, char**)::<lambda(int)>, int> (invoke.h:60)
+   n1: 891696 0x401861: __invoke<main(int, char**)::<lambda(int)>, int> (invoke.h:95)
+    n1: 891696 0x401861: _M_invoke<0, 1> (thread:264)
+     n1: 891696 0x401861: operator() (thread:271)
+      n1: 891696 0x401861: std::thread::_State_impl<std::thread::_Invoker<std::tuple<main::{lambda(int)#2}, int> > >::_M_run() (thread:215)
+       n1: 891696 0x4976C4F: ??? (in /nix/store/dd8swlwhpdhn6bv219562vyxhi8278hs-gcc-10.3.0-lib/lib/libstdc++.so.6.0.28)
+        n1: 891696 0x4888D3F: start_thread (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libpthread-2.33.so)
+         n0: 891696 0x4CCE03E: clone (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libc-2.33.so)
+ n1: 370640 0x401B9E: malloc (concurrentqueue.h:401)
+  n1: 370640 0x401B9E: aligned_malloc<moodycamel::ConcurrentQueue<req_tuple*>::Block> (concurrentqueue.h:3585)
+   n1: 370640 0x401B9E: create<moodycamel::ConcurrentQueue<req_tuple*>::Block> (concurrentqueue.h:3633)
+    n1: 370640 0x401B9E: requisition_block<(moodycamel::ConcurrentQueue<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>::AllocationMode<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>)0> (concurrentqueue.h:3095)
+     n1: 370640 0x401B9E: enqueue<(moodycamel::ConcurrentQueue<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>::AllocationMode<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>)0, req_tuple* const&> (concurrentqueue.h:2494)
+      n1: 370640 0x401B9E: inner_enqueue<(moodycamel::ConcurrentQueue<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>::AllocationMode<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>)0, req_tuple* const&> (concurrentqueue.h:1362)
+       n1: 370640 0x401B9E: enqueue (concurrentqueue.h:984)
+        n1: 370640 0x401B9E: operator() (example_2.cc:42)
+         n1: 370640 0x401B9E: __invoke_impl<void, main(int, char**)::<lambda(int)>, int> (invoke.h:60)
+          n1: 370640 0x401B9E: __invoke<main(int, char**)::<lambda(int)>, int> (invoke.h:95)
+           n1: 370640 0x401B9E: _M_invoke<0, 1> (thread:264)
+            n1: 370640 0x401B9E: operator() (thread:271)
+             n1: 370640 0x401B9E: std::thread::_State_impl<std::thread::_Invoker<std::tuple<main::{lambda(int)#2}, int> > >::_M_run() (thread:215)
+              n1: 370640 0x4976C4F: ??? (in /nix/store/dd8swlwhpdhn6bv219562vyxhi8278hs-gcc-10.3.0-lib/lib/libstdc++.so.6.0.28)
+               n1: 370640 0x4888D3F: start_thread (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libpthread-2.33.so)
+                n0: 370640 0x4CCE03E: clone (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libc-2.33.so)
+ n1: 148612 0x40187C: operator() (example_2.cc:41)
+  n1: 148612 0x40187C: __invoke_impl<void, main(int, char**)::<lambda(int)>, int> (invoke.h:60)
+   n1: 148612 0x40187C: __invoke<main(int, char**)::<lambda(int)>, int> (invoke.h:95)
+    n1: 148612 0x40187C: _M_invoke<0, 1> (thread:264)
+     n1: 148612 0x40187C: operator() (thread:271)
+      n1: 148612 0x40187C: std::thread::_State_impl<std::thread::_Invoker<std::tuple<main::{lambda(int)#2}, int> > >::_M_run() (thread:215)
+       n1: 148612 0x4976C4F: ??? (in /nix/store/dd8swlwhpdhn6bv219562vyxhi8278hs-gcc-10.3.0-lib/lib/libstdc++.so.6.0.28)
+        n1: 148612 0x4888D3F: start_thread (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libpthread-2.33.so)
+         n0: 148612 0x4CCE03E: clone (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libc-2.33.so)
+ n1: 72704 0x494A3A5: ??? (in /nix/store/dd8swlwhpdhn6bv219562vyxhi8278hs-gcc-10.3.0-lib/lib/libstdc++.so.6.0.28)
+  n1: 72704 0x400FBCD: call_init (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/ld-2.33.so)
+   n1: 72704 0x400FCB3: _dl_init (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/ld-2.33.so)
+    n0: 72704 0x4001089: ??? (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/ld-2.33.so)
+ n1: 64836 0x401955: malloc (concurrentqueue.h:401)
+  n1: 64836 0x401955: new_block_index (concurrentqueue.h:2957)
+   n1: 64836 0x401955: insert_block_index_entry<(moodycamel::ConcurrentQueue<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>::AllocationMode<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>)0> (concurrentqueue.h:2907)
+    n1: 64836 0x401955: enqueue<(moodycamel::ConcurrentQueue<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>::AllocationMode<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>)0, req_tuple* const&> (concurrentqueue.h:2489)
+     n1: 64836 0x401955: inner_enqueue<(moodycamel::ConcurrentQueue<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>::AllocationMode<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>)0, req_tuple* const&> (concurrentqueue.h:1362)
+      n1: 64836 0x401955: enqueue (concurrentqueue.h:984)
+       n1: 64836 0x401955: operator() (example_2.cc:42)
+        n1: 64836 0x401955: __invoke_impl<void, main(int, char**)::<lambda(int)>, int> (invoke.h:60)
+         n1: 64836 0x401955: __invoke<main(int, char**)::<lambda(int)>, int> (invoke.h:95)
+          n1: 64836 0x401955: _M_invoke<0, 1> (thread:264)
+           n1: 64836 0x401955: operator() (thread:271)
+            n1: 64836 0x401955: std::thread::_State_impl<std::thread::_Invoker<std::tuple<main::{lambda(int)#2}, int> > >::_M_run() (thread:215)
+             n1: 64836 0x4976C4F: ??? (in /nix/store/dd8swlwhpdhn6bv219562vyxhi8278hs-gcc-10.3.0-lib/lib/libstdc++.so.6.0.28)
+              n1: 64836 0x4888D3F: start_thread (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libpthread-2.33.so)
+               n0: 64836 0x4CCE03E: clone (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libc-2.33.so)
+ n0: 15094 in 8 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=19
+#-----------
+time=10120631
+mem_heap_B=1639750
+mem_heap_extra_B=1428698
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=20
+#-----------
+time=10560942
+mem_heap_B=1748458
+mem_heap_extra_B=1532406
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=21
+#-----------
+time=10869362
+mem_heap_B=1824626
+mem_heap_extra_B=1605182
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=22
+#-----------
+time=11100682
+mem_heap_B=1881906
+mem_heap_extra_B=1659774
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=23
+#-----------
+time=11486136
+mem_heap_B=1977262
+mem_heap_extra_B=1750714
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=24
+#-----------
+time=11800286
+mem_heap_B=2054770
+mem_heap_extra_B=1824822
+mem_stacks_B=0
+heap_tree=detailed
+n6: 2054770 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1200000 0x401861: operator() (example_2.cc:40)
+  n1: 1200000 0x401861: __invoke_impl<void, main(int, char**)::<lambda(int)>, int> (invoke.h:60)
+   n1: 1200000 0x401861: __invoke<main(int, char**)::<lambda(int)>, int> (invoke.h:95)
+    n1: 1200000 0x401861: _M_invoke<0, 1> (thread:264)
+     n1: 1200000 0x401861: operator() (thread:271)
+      n1: 1200000 0x401861: std::thread::_State_impl<std::thread::_Invoker<std::tuple<main::{lambda(int)#2}, int> > >::_M_run() (thread:215)
+       n1: 1200000 0x4976C4F: ??? (in /nix/store/dd8swlwhpdhn6bv219562vyxhi8278hs-gcc-10.3.0-lib/lib/libstdc++.so.6.0.28)
+        n1: 1200000 0x4888D3F: start_thread (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libpthread-2.33.so)
+         n0: 1200000 0x4CCE03E: clone (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libc-2.33.so)
+ n1: 502168 0x401B9E: malloc (concurrentqueue.h:401)
+  n1: 502168 0x401B9E: aligned_malloc<moodycamel::ConcurrentQueue<req_tuple*>::Block> (concurrentqueue.h:3585)
+   n1: 502168 0x401B9E: create<moodycamel::ConcurrentQueue<req_tuple*>::Block> (concurrentqueue.h:3633)
+    n1: 502168 0x401B9E: requisition_block<(moodycamel::ConcurrentQueue<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>::AllocationMode<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>)0> (concurrentqueue.h:3095)
+     n1: 502168 0x401B9E: enqueue<(moodycamel::ConcurrentQueue<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>::AllocationMode<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>)0, req_tuple* const&> (concurrentqueue.h:2494)
+      n1: 502168 0x401B9E: inner_enqueue<(moodycamel::ConcurrentQueue<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>::AllocationMode<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>)0, req_tuple* const&> (concurrentqueue.h:1362)
+       n1: 502168 0x401B9E: enqueue (concurrentqueue.h:984)
+        n1: 502168 0x401B9E: operator() (example_2.cc:42)
+         n1: 502168 0x401B9E: __invoke_impl<void, main(int, char**)::<lambda(int)>, int> (invoke.h:60)
+          n1: 502168 0x401B9E: __invoke<main(int, char**)::<lambda(int)>, int> (invoke.h:95)
+           n1: 502168 0x401B9E: _M_invoke<0, 1> (thread:264)
+            n1: 502168 0x401B9E: operator() (thread:271)
+             n1: 502168 0x401B9E: std::thread::_State_impl<std::thread::_Invoker<std::tuple<main::{lambda(int)#2}, int> > >::_M_run() (thread:215)
+              n1: 502168 0x4976C4F: ??? (in /nix/store/dd8swlwhpdhn6bv219562vyxhi8278hs-gcc-10.3.0-lib/lib/libstdc++.so.6.0.28)
+               n1: 502168 0x4888D3F: start_thread (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libpthread-2.33.so)
+                n0: 502168 0x4CCE03E: clone (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libc-2.33.so)
+ n1: 200000 0x40187C: operator() (example_2.cc:41)
+  n1: 200000 0x40187C: __invoke_impl<void, main(int, char**)::<lambda(int)>, int> (invoke.h:60)
+   n1: 200000 0x40187C: __invoke<main(int, char**)::<lambda(int)>, int> (invoke.h:95)
+    n1: 200000 0x40187C: _M_invoke<0, 1> (thread:264)
+     n1: 200000 0x40187C: operator() (thread:271)
+      n1: 200000 0x40187C: std::thread::_State_impl<std::thread::_Invoker<std::tuple<main::{lambda(int)#2}, int> > >::_M_run() (thread:215)
+       n1: 200000 0x4976C4F: ??? (in /nix/store/dd8swlwhpdhn6bv219562vyxhi8278hs-gcc-10.3.0-lib/lib/libstdc++.so.6.0.28)
+        n1: 200000 0x4888D3F: start_thread (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libpthread-2.33.so)
+         n0: 200000 0x4CCE03E: clone (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libc-2.33.so)
+ n1: 72704 0x494A3A5: ??? (in /nix/store/dd8swlwhpdhn6bv219562vyxhi8278hs-gcc-10.3.0-lib/lib/libstdc++.so.6.0.28)
+  n1: 72704 0x400FBCD: call_init (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/ld-2.33.so)
+   n1: 72704 0x400FCB3: _dl_init (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/ld-2.33.so)
+    n0: 72704 0x4001089: ??? (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/ld-2.33.so)
+ n1: 64836 0x401955: malloc (concurrentqueue.h:401)
+  n1: 64836 0x401955: new_block_index (concurrentqueue.h:2957)
+   n1: 64836 0x401955: insert_block_index_entry<(moodycamel::ConcurrentQueue<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>::AllocationMode<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>)0> (concurrentqueue.h:2907)
+    n1: 64836 0x401955: enqueue<(moodycamel::ConcurrentQueue<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>::AllocationMode<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>)0, req_tuple* const&> (concurrentqueue.h:2489)
+     n1: 64836 0x401955: inner_enqueue<(moodycamel::ConcurrentQueue<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>::AllocationMode<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>)0, req_tuple* const&> (concurrentqueue.h:1362)
+      n1: 64836 0x401955: enqueue (concurrentqueue.h:984)
+       n1: 64836 0x401955: operator() (example_2.cc:42)
+        n1: 64836 0x401955: __invoke_impl<void, main(int, char**)::<lambda(int)>, int> (invoke.h:60)
+         n1: 64836 0x401955: __invoke<main(int, char**)::<lambda(int)>, int> (invoke.h:95)
+          n1: 64836 0x401955: _M_invoke<0, 1> (thread:264)
+           n1: 64836 0x401955: operator() (thread:271)
+            n1: 64836 0x401955: std::thread::_State_impl<std::thread::_Invoker<std::tuple<main::{lambda(int)#2}, int> > >::_M_run() (thread:215)
+             n1: 64836 0x4976C4F: ??? (in /nix/store/dd8swlwhpdhn6bv219562vyxhi8278hs-gcc-10.3.0-lib/lib/libstdc++.so.6.0.28)
+              n1: 64836 0x4888D3F: start_thread (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libpthread-2.33.so)
+               n0: 64836 0x4CCE03E: clone (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libc-2.33.so)
+ n0: 15062 in 8 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=25
+#-----------
+time=12031510
+mem_heap_B=2111874
+mem_heap_extra_B=1879222
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=26
+#-----------
+time=12339892
+mem_heap_B=2188038
+mem_heap_extra_B=1951978
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=27
+#-----------
+time=12725384
+mem_heap_B=2283398
+mem_heap_extra_B=2042938
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=28
+#-----------
+time=12956732
+mem_heap_B=2340374
+mem_heap_extra_B=2097530
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=29
+#-----------
+time=13347954
+mem_heap_B=2437074
+mem_heap_extra_B=2189822
+mem_stacks_B=0
+heap_tree=peak
+n6: 2437074 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1440000 0x401861: operator() (example_2.cc:40)
+  n1: 1440000 0x401861: __invoke_impl<void, main(int, char**)::<lambda(int)>, int> (invoke.h:60)
+   n1: 1440000 0x401861: __invoke<main(int, char**)::<lambda(int)>, int> (invoke.h:95)
+    n1: 1440000 0x401861: _M_invoke<0, 1> (thread:264)
+     n1: 1440000 0x401861: operator() (thread:271)
+      n1: 1440000 0x401861: std::thread::_State_impl<std::thread::_Invoker<std::tuple<main::{lambda(int)#2}, int> > >::_M_run() (thread:215)
+       n1: 1440000 0x4976C4F: ??? (in /nix/store/dd8swlwhpdhn6bv219562vyxhi8278hs-gcc-10.3.0-lib/lib/libstdc++.so.6.0.28)
+        n1: 1440000 0x4888D3F: start_thread (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libpthread-2.33.so)
+         n0: 1440000 0x4CCE03E: clone (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libc-2.33.so)
+ n1: 604504 0x401B9E: malloc (concurrentqueue.h:401)
+  n1: 604504 0x401B9E: aligned_malloc<moodycamel::ConcurrentQueue<req_tuple*>::Block> (concurrentqueue.h:3585)
+   n1: 604504 0x401B9E: create<moodycamel::ConcurrentQueue<req_tuple*>::Block> (concurrentqueue.h:3633)
+    n1: 604504 0x401B9E: requisition_block<(moodycamel::ConcurrentQueue<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>::AllocationMode<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>)0> (concurrentqueue.h:3095)
+     n1: 604504 0x401B9E: enqueue<(moodycamel::ConcurrentQueue<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>::AllocationMode<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>)0, req_tuple* const&> (concurrentqueue.h:2494)
+      n1: 604504 0x401B9E: inner_enqueue<(moodycamel::ConcurrentQueue<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>::AllocationMode<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>)0, req_tuple* const&> (concurrentqueue.h:1362)
+       n1: 604504 0x401B9E: enqueue (concurrentqueue.h:984)
+        n1: 604504 0x401B9E: operator() (example_2.cc:42)
+         n1: 604504 0x401B9E: __invoke_impl<void, main(int, char**)::<lambda(int)>, int> (invoke.h:60)
+          n1: 604504 0x401B9E: __invoke<main(int, char**)::<lambda(int)>, int> (invoke.h:95)
+           n1: 604504 0x401B9E: _M_invoke<0, 1> (thread:264)
+            n1: 604504 0x401B9E: operator() (thread:271)
+             n1: 604504 0x401B9E: std::thread::_State_impl<std::thread::_Invoker<std::tuple<main::{lambda(int)#2}, int> > >::_M_run() (thread:215)
+              n1: 604504 0x4976C4F: ??? (in /nix/store/dd8swlwhpdhn6bv219562vyxhi8278hs-gcc-10.3.0-lib/lib/libstdc++.so.6.0.28)
+               n1: 604504 0x4888D3F: start_thread (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libpthread-2.33.so)
+                n0: 604504 0x4CCE03E: clone (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libc-2.33.so)
+ n1: 240000 0x40187C: operator() (example_2.cc:41)
+  n1: 240000 0x40187C: __invoke_impl<void, main(int, char**)::<lambda(int)>, int> (invoke.h:60)
+   n1: 240000 0x40187C: __invoke<main(int, char**)::<lambda(int)>, int> (invoke.h:95)
+    n1: 240000 0x40187C: _M_invoke<0, 1> (thread:264)
+     n1: 240000 0x40187C: operator() (thread:271)
+      n1: 240000 0x40187C: std::thread::_State_impl<std::thread::_Invoker<std::tuple<main::{lambda(int)#2}, int> > >::_M_run() (thread:215)
+       n1: 240000 0x4976C4F: ??? (in /nix/store/dd8swlwhpdhn6bv219562vyxhi8278hs-gcc-10.3.0-lib/lib/libstdc++.so.6.0.28)
+        n1: 240000 0x4888D3F: start_thread (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libpthread-2.33.so)
+         n0: 240000 0x4CCE03E: clone (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libc-2.33.so)
+ n1: 72704 0x494A3A5: ??? (in /nix/store/dd8swlwhpdhn6bv219562vyxhi8278hs-gcc-10.3.0-lib/lib/libstdc++.so.6.0.28)
+  n1: 72704 0x400FBCD: call_init (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/ld-2.33.so)
+   n1: 72704 0x400FCB3: _dl_init (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/ld-2.33.so)
+    n0: 72704 0x4001089: ??? (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/ld-2.33.so)
+ n1: 64836 0x401955: malloc (concurrentqueue.h:401)
+  n1: 64836 0x401955: new_block_index (concurrentqueue.h:2957)
+   n1: 64836 0x401955: insert_block_index_entry<(moodycamel::ConcurrentQueue<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>::AllocationMode<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>)0> (concurrentqueue.h:2907)
+    n1: 64836 0x401955: enqueue<(moodycamel::ConcurrentQueue<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>::AllocationMode<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>)0, req_tuple* const&> (concurrentqueue.h:2489)
+     n1: 64836 0x401955: inner_enqueue<(moodycamel::ConcurrentQueue<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>::AllocationMode<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>)0, req_tuple* const&> (concurrentqueue.h:1362)
+      n1: 64836 0x401955: enqueue (concurrentqueue.h:984)
+       n1: 64836 0x401955: operator() (example_2.cc:42)
+        n1: 64836 0x401955: __invoke_impl<void, main(int, char**)::<lambda(int)>, int> (invoke.h:60)
+         n1: 64836 0x401955: __invoke<main(int, char**)::<lambda(int)>, int> (invoke.h:95)
+          n1: 64836 0x401955: _M_invoke<0, 1> (thread:264)
+           n1: 64836 0x401955: operator() (thread:271)
+            n1: 64836 0x401955: std::thread::_State_impl<std::thread::_Invoker<std::tuple<main::{lambda(int)#2}, int> > >::_M_run() (thread:215)
+             n1: 64836 0x4976C4F: ??? (in /nix/store/dd8swlwhpdhn6bv219562vyxhi8278hs-gcc-10.3.0-lib/lib/libstdc++.so.6.0.28)
+              n1: 64836 0x4888D3F: start_thread (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libpthread-2.33.so)
+               n0: 64836 0x4CCE03E: clone (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libc-2.33.so)
+ n0: 15030 in 8 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=30
+#-----------
+time=13595528
+mem_heap_B=2391974
+mem_heap_extra_B=2137162
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=31
+#-----------
+time=13966868
+mem_heap_B=2308518
+mem_heap_extra_B=2057450
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=32
+#-----------
+time=14461999
+mem_heap_B=2197134
+mem_heap_extra_B=1951162
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=33
+#-----------
+time=14957130
+mem_heap_B=2085750
+mem_heap_extra_B=1844874
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=34
+#-----------
+time=15204712
+mem_heap_B=2029894
+mem_heap_extra_B=1791706
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=35
+#-----------
+time=15452261
+mem_heap_B=1974366
+mem_heap_extra_B=1738570
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=36
+#-----------
+time=15699843
+mem_heap_B=1918510
+mem_heap_extra_B=1685418
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=37
+#-----------
+time=15947392
+mem_heap_B=1862982
+mem_heap_extra_B=1632282
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=38
+#-----------
+time=16194974
+mem_heap_B=1807126
+mem_heap_extra_B=1579130
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=39
+#-----------
+time=16442523
+mem_heap_B=1751598
+mem_heap_extra_B=1525994
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=40
+#-----------
+time=16690105
+mem_heap_B=1695742
+mem_heap_extra_B=1472842
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=41
+#-----------
+time=16937654
+mem_heap_B=1640214
+mem_heap_extra_B=1419690
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=42
+#-----------
+time=17185236
+mem_heap_B=1584358
+mem_heap_extra_B=1366538
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=43
+#-----------
+time=17432785
+mem_heap_B=1528830
+mem_heap_extra_B=1313402
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=44
+#-----------
+time=17680367
+mem_heap_B=1472974
+mem_heap_extra_B=1260250
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=45
+#-----------
+time=17927916
+mem_heap_B=1417446
+mem_heap_extra_B=1207114
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=46
+#-----------
+time=18175498
+mem_heap_B=1361590
+mem_heap_extra_B=1153962
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=47
+#-----------
+time=18423047
+mem_heap_B=1306062
+mem_heap_extra_B=1100826
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=48
+#-----------
+time=18670629
+mem_heap_B=1250206
+mem_heap_extra_B=1047658
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=49
+#-----------
+time=19041969
+mem_heap_B=1166750
+mem_heap_extra_B=967946
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=50
+#-----------
+time=19273228
+mem_heap_B=1114566
+mem_heap_extra_B=918298
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=51
+#-----------
+time=19504454
+mem_heap_B=1062710
+mem_heap_extra_B=868666
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=52
+#-----------
+time=19735713
+mem_heap_B=1010526
+mem_heap_extra_B=819018
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=53
+#-----------
+time=19966939
+mem_heap_B=958670
+mem_heap_extra_B=769386
+mem_stacks_B=0
+heap_tree=detailed
+n6: 958670 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 505728 0x401861: operator() (example_2.cc:40)
+  n1: 505728 0x401861: __invoke_impl<void, main(int, char**)::<lambda(int)>, int> (invoke.h:60)
+   n1: 505728 0x401861: __invoke<main(int, char**)::<lambda(int)>, int> (invoke.h:95)
+    n1: 505728 0x401861: _M_invoke<0, 1> (thread:264)
+     n1: 505728 0x401861: operator() (thread:271)
+      n1: 505728 0x401861: std::thread::_State_impl<std::thread::_Invoker<std::tuple<main::{lambda(int)#2}, int> > >::_M_run() (thread:215)
+       n1: 505728 0x4976C4F: ??? (in /nix/store/dd8swlwhpdhn6bv219562vyxhi8278hs-gcc-10.3.0-lib/lib/libstdc++.so.6.0.28)
+        n1: 505728 0x4888D3F: start_thread (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libpthread-2.33.so)
+         n0: 505728 0x4CCE03E: clone (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libc-2.33.so)
+ n1: 216152 0x401B9E: malloc (concurrentqueue.h:401)
+  n1: 216152 0x401B9E: aligned_malloc<moodycamel::ConcurrentQueue<req_tuple*>::Block> (concurrentqueue.h:3585)
+   n1: 216152 0x401B9E: create<moodycamel::ConcurrentQueue<req_tuple*>::Block> (concurrentqueue.h:3633)
+    n1: 216152 0x401B9E: requisition_block<(moodycamel::ConcurrentQueue<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>::AllocationMode<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>)0> (concurrentqueue.h:3095)
+     n1: 216152 0x401B9E: enqueue<(moodycamel::ConcurrentQueue<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>::AllocationMode<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>)0, req_tuple* const&> (concurrentqueue.h:2494)
+      n1: 216152 0x401B9E: inner_enqueue<(moodycamel::ConcurrentQueue<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>::AllocationMode<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>)0, req_tuple* const&> (concurrentqueue.h:1362)
+       n1: 216152 0x401B9E: enqueue (concurrentqueue.h:984)
+        n1: 216152 0x401B9E: operator() (example_2.cc:42)
+         n1: 216152 0x401B9E: __invoke_impl<void, main(int, char**)::<lambda(int)>, int> (invoke.h:60)
+          n1: 216152 0x401B9E: __invoke<main(int, char**)::<lambda(int)>, int> (invoke.h:95)
+           n1: 216152 0x401B9E: _M_invoke<0, 1> (thread:264)
+            n1: 216152 0x401B9E: operator() (thread:271)
+             n1: 216152 0x401B9E: std::thread::_State_impl<std::thread::_Invoker<std::tuple<main::{lambda(int)#2}, int> > >::_M_run() (thread:215)
+              n1: 216152 0x4976C4F: ??? (in /nix/store/dd8swlwhpdhn6bv219562vyxhi8278hs-gcc-10.3.0-lib/lib/libstdc++.so.6.0.28)
+               n1: 216152 0x4888D3F: start_thread (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libpthread-2.33.so)
+                n0: 216152 0x4CCE03E: clone (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libc-2.33.so)
+ n1: 84284 0x40187C: operator() (example_2.cc:41)
+  n1: 84284 0x40187C: __invoke_impl<void, main(int, char**)::<lambda(int)>, int> (invoke.h:60)
+   n1: 84284 0x40187C: __invoke<main(int, char**)::<lambda(int)>, int> (invoke.h:95)
+    n1: 84284 0x40187C: _M_invoke<0, 1> (thread:264)
+     n1: 84284 0x40187C: operator() (thread:271)
+      n1: 84284 0x40187C: std::thread::_State_impl<std::thread::_Invoker<std::tuple<main::{lambda(int)#2}, int> > >::_M_run() (thread:215)
+       n1: 84284 0x4976C4F: ??? (in /nix/store/dd8swlwhpdhn6bv219562vyxhi8278hs-gcc-10.3.0-lib/lib/libstdc++.so.6.0.28)
+        n1: 84284 0x4888D3F: start_thread (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libpthread-2.33.so)
+         n0: 84284 0x4CCE03E: clone (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libc-2.33.so)
+ n1: 72704 0x494A3A5: ??? (in /nix/store/dd8swlwhpdhn6bv219562vyxhi8278hs-gcc-10.3.0-lib/lib/libstdc++.so.6.0.28)
+  n1: 72704 0x400FBCD: call_init (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/ld-2.33.so)
+   n1: 72704 0x400FCB3: _dl_init (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/ld-2.33.so)
+    n0: 72704 0x4001089: ??? (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/ld-2.33.so)
+ n1: 64836 0x401955: malloc (concurrentqueue.h:401)
+  n1: 64836 0x401955: new_block_index (concurrentqueue.h:2957)
+   n1: 64836 0x401955: insert_block_index_entry<(moodycamel::ConcurrentQueue<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>::AllocationMode<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>)0> (concurrentqueue.h:2907)
+    n1: 64836 0x401955: enqueue<(moodycamel::ConcurrentQueue<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>::AllocationMode<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>)0, req_tuple* const&> (concurrentqueue.h:2489)
+     n1: 64836 0x401955: inner_enqueue<(moodycamel::ConcurrentQueue<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>::AllocationMode<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>)0, req_tuple* const&> (concurrentqueue.h:1362)
+      n1: 64836 0x401955: enqueue (concurrentqueue.h:984)
+       n1: 64836 0x401955: operator() (example_2.cc:42)
+        n1: 64836 0x401955: __invoke_impl<void, main(int, char**)::<lambda(int)>, int> (invoke.h:60)
+         n1: 64836 0x401955: __invoke<main(int, char**)::<lambda(int)>, int> (invoke.h:95)
+          n1: 64836 0x401955: _M_invoke<0, 1> (thread:264)
+           n1: 64836 0x401955: operator() (thread:271)
+            n1: 64836 0x401955: std::thread::_State_impl<std::thread::_Invoker<std::tuple<main::{lambda(int)#2}, int> > >::_M_run() (thread:215)
+             n1: 64836 0x4976C4F: ??? (in /nix/store/dd8swlwhpdhn6bv219562vyxhi8278hs-gcc-10.3.0-lib/lib/libstdc++.so.6.0.28)
+              n1: 64836 0x4888D3F: start_thread (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libpthread-2.33.so)
+               n0: 64836 0x4CCE03E: clone (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libc-2.33.so)
+ n0: 14966 in 8 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=54
+#-----------
+time=20198198
+mem_heap_B=906486
+mem_heap_extra_B=719722
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=55
+#-----------
+time=20429424
+mem_heap_B=854630
+mem_heap_extra_B=670090
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=56
+#-----------
+time=20660683
+mem_heap_B=802446
+mem_heap_extra_B=620442
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=57
+#-----------
+time=20891909
+mem_heap_B=750590
+mem_heap_extra_B=570810
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=58
+#-----------
+time=21123168
+mem_heap_B=698406
+mem_heap_extra_B=521162
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=59
+#-----------
+time=21354394
+mem_heap_B=646550
+mem_heap_extra_B=471530
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=60
+#-----------
+time=21585653
+mem_heap_B=594366
+mem_heap_extra_B=421882
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=61
+#-----------
+time=21816879
+mem_heap_B=542510
+mem_heap_extra_B=372250
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=62
+#-----------
+time=22048138
+mem_heap_B=490326
+mem_heap_extra_B=322586
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=63
+#-----------
+time=22279364
+mem_heap_B=438470
+mem_heap_extra_B=272954
+mem_stacks_B=0
+heap_tree=detailed
+n7: 438470 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 179328 0x401861: operator() (example_2.cc:40)
+  n1: 179328 0x401861: __invoke_impl<void, main(int, char**)::<lambda(int)>, int> (invoke.h:60)
+   n1: 179328 0x401861: __invoke<main(int, char**)::<lambda(int)>, int> (invoke.h:95)
+    n1: 179328 0x401861: _M_invoke<0, 1> (thread:264)
+     n1: 179328 0x401861: operator() (thread:271)
+      n1: 179328 0x401861: std::thread::_State_impl<std::thread::_Invoker<std::tuple<main::{lambda(int)#2}, int> > >::_M_run() (thread:215)
+       n1: 179328 0x4976C4F: ??? (in /nix/store/dd8swlwhpdhn6bv219562vyxhi8278hs-gcc-10.3.0-lib/lib/libstdc++.so.6.0.28)
+        n1: 179328 0x4888D3F: start_thread (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libpthread-2.33.so)
+         n0: 179328 0x4CCE03E: clone (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libc-2.33.so)
+ n1: 76752 0x401B9E: malloc (concurrentqueue.h:401)
+  n1: 76752 0x401B9E: aligned_malloc<moodycamel::ConcurrentQueue<req_tuple*>::Block> (concurrentqueue.h:3585)
+   n1: 76752 0x401B9E: create<moodycamel::ConcurrentQueue<req_tuple*>::Block> (concurrentqueue.h:3633)
+    n1: 76752 0x401B9E: requisition_block<(moodycamel::ConcurrentQueue<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>::AllocationMode<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>)0> (concurrentqueue.h:3095)
+     n1: 76752 0x401B9E: enqueue<(moodycamel::ConcurrentQueue<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>::AllocationMode<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>)0, req_tuple* const&> (concurrentqueue.h:2494)
+      n1: 76752 0x401B9E: inner_enqueue<(moodycamel::ConcurrentQueue<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>::AllocationMode<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>)0, req_tuple* const&> (concurrentqueue.h:1362)
+       n1: 76752 0x401B9E: enqueue (concurrentqueue.h:984)
+        n1: 76752 0x401B9E: operator() (example_2.cc:42)
+         n1: 76752 0x401B9E: __invoke_impl<void, main(int, char**)::<lambda(int)>, int> (invoke.h:60)
+          n1: 76752 0x401B9E: __invoke<main(int, char**)::<lambda(int)>, int> (invoke.h:95)
+           n1: 76752 0x401B9E: _M_invoke<0, 1> (thread:264)
+            n1: 76752 0x401B9E: operator() (thread:271)
+             n1: 76752 0x401B9E: std::thread::_State_impl<std::thread::_Invoker<std::tuple<main::{lambda(int)#2}, int> > >::_M_run() (thread:215)
+              n1: 76752 0x4976C4F: ??? (in /nix/store/dd8swlwhpdhn6bv219562vyxhi8278hs-gcc-10.3.0-lib/lib/libstdc++.so.6.0.28)
+               n1: 76752 0x4888D3F: start_thread (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libpthread-2.33.so)
+                n0: 76752 0x4CCE03E: clone (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libc-2.33.so)
+ n1: 72704 0x494A3A5: ??? (in /nix/store/dd8swlwhpdhn6bv219562vyxhi8278hs-gcc-10.3.0-lib/lib/libstdc++.so.6.0.28)
+  n1: 72704 0x400FBCD: call_init (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/ld-2.33.so)
+   n1: 72704 0x400FCB3: _dl_init (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/ld-2.33.so)
+    n0: 72704 0x4001089: ??? (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/ld-2.33.so)
+ n1: 64836 0x401955: malloc (concurrentqueue.h:401)
+  n1: 64836 0x401955: new_block_index (concurrentqueue.h:2957)
+   n1: 64836 0x401955: insert_block_index_entry<(moodycamel::ConcurrentQueue<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>::AllocationMode<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>)0> (concurrentqueue.h:2907)
+    n1: 64836 0x401955: enqueue<(moodycamel::ConcurrentQueue<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>::AllocationMode<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>)0, req_tuple* const&> (concurrentqueue.h:2489)
+     n1: 64836 0x401955: inner_enqueue<(moodycamel::ConcurrentQueue<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>::AllocationMode<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>)0, req_tuple* const&> (concurrentqueue.h:1362)
+      n1: 64836 0x401955: enqueue (concurrentqueue.h:984)
+       n1: 64836 0x401955: operator() (example_2.cc:42)
+        n1: 64836 0x401955: __invoke_impl<void, main(int, char**)::<lambda(int)>, int> (invoke.h:60)
+         n1: 64836 0x401955: __invoke<main(int, char**)::<lambda(int)>, int> (invoke.h:95)
+          n1: 64836 0x401955: _M_invoke<0, 1> (thread:264)
+           n1: 64836 0x401955: operator() (thread:271)
+            n1: 64836 0x401955: std::thread::_State_impl<std::thread::_Invoker<std::tuple<main::{lambda(int)#2}, int> > >::_M_run() (thread:215)
+             n1: 64836 0x4976C4F: ??? (in /nix/store/dd8swlwhpdhn6bv219562vyxhi8278hs-gcc-10.3.0-lib/lib/libstdc++.so.6.0.28)
+              n1: 64836 0x4888D3F: start_thread (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libpthread-2.33.so)
+               n0: 64836 0x4CCE03E: clone (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libc-2.33.so)
+ n1: 29884 0x40187C: operator() (example_2.cc:41)
+  n1: 29884 0x40187C: __invoke_impl<void, main(int, char**)::<lambda(int)>, int> (invoke.h:60)
+   n1: 29884 0x40187C: __invoke<main(int, char**)::<lambda(int)>, int> (invoke.h:95)
+    n1: 29884 0x40187C: _M_invoke<0, 1> (thread:264)
+     n1: 29884 0x40187C: operator() (thread:271)
+      n1: 29884 0x40187C: std::thread::_State_impl<std::thread::_Invoker<std::tuple<main::{lambda(int)#2}, int> > >::_M_run() (thread:215)
+       n1: 29884 0x4976C4F: ??? (in /nix/store/dd8swlwhpdhn6bv219562vyxhi8278hs-gcc-10.3.0-lib/lib/libstdc++.so.6.0.28)
+        n1: 29884 0x4888D3F: start_thread (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libpthread-2.33.so)
+         n0: 29884 0x4CCE03E: clone (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libc-2.33.so)
+ n1: 10496 0x401289: malloc (concurrentqueue.h:401)
+  n1: 10496 0x401289: aligned_malloc<moodycamel::ConcurrentQueue<req_tuple*>::Block> (concurrentqueue.h:3585)
+   n1: 10496 0x401289: create_array<moodycamel::ConcurrentQueue<req_tuple*>::Block> (concurrentqueue.h:3610)
+    n1: 10496 0x401289: populate_initial_block_list (concurrentqueue.h:3033)
+     n1: 10496 0x401289: populate_initial_block_list (concurrentqueue.h:3025)
+      n1: 10496 0x401289: ConcurrentQueue (concurrentqueue.h:808)
+       n0: 10496 0x401289: main (example_2.cc:14)
+ n0: 4470 in 7 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=64
+#-----------
+time=22510623
+mem_heap_B=386286
+mem_heap_extra_B=223306
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=65
+#-----------
+time=22741849
+mem_heap_B=334430
+mem_heap_extra_B=173674
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=66
+#-----------
+time=22973108
+mem_heap_B=282246
+mem_heap_extra_B=124026
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=67
+#-----------
+time=23204334
+mem_heap_B=230390
+mem_heap_extra_B=74394
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=68
+#-----------
+time=23435593
+mem_heap_B=178206
+mem_heap_extra_B=24746
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=69
+#-----------
+time=52467838567
+mem_heap_B=152530
+mem_heap_extra_B=254
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=70
+#-----------
+time=52468069856
+mem_heap_B=199426
+mem_heap_extra_B=54462
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=71
+#-----------
+time=52468301138
+mem_heap_B=256702
+mem_heap_extra_B=109050
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=72
+#-----------
+time=52468532420
+mem_heap_B=313978
+mem_heap_extra_B=163622
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=73
+#-----------
+time=52468763658
+mem_heap_B=370926
+mem_heap_extra_B=218178
+mem_stacks_B=0
+heap_tree=detailed
+n7: 370926 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 143616 0x401861: operator() (example_2.cc:40)
+  n1: 143616 0x401861: __invoke_impl<void, main(int, char**)::<lambda(int)>, int> (invoke.h:60)
+   n1: 143616 0x401861: __invoke<main(int, char**)::<lambda(int)>, int> (invoke.h:95)
+    n1: 143616 0x401861: _M_invoke<0, 1> (thread:264)
+     n1: 143616 0x401861: operator() (thread:271)
+      n1: 143616 0x401861: std::thread::_State_impl<std::thread::_Invoker<std::tuple<main::{lambda(int)#2}, int> > >::_M_run() (thread:215)
+       n1: 143616 0x4976C4F: ??? (in /nix/store/dd8swlwhpdhn6bv219562vyxhi8278hs-gcc-10.3.0-lib/lib/libstdc++.so.6.0.28)
+        n1: 143616 0x4888D3F: start_thread (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libpthread-2.33.so)
+         n0: 143616 0x4CCE03E: clone (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libc-2.33.so)
+ n1: 72704 0x494A3A5: ??? (in /nix/store/dd8swlwhpdhn6bv219562vyxhi8278hs-gcc-10.3.0-lib/lib/libstdc++.so.6.0.28)
+  n1: 72704 0x400FBCD: call_init (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/ld-2.33.so)
+   n1: 72704 0x400FCB3: _dl_init (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/ld-2.33.so)
+    n0: 72704 0x4001089: ??? (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/ld-2.33.so)
+ n1: 64836 0x401955: malloc (concurrentqueue.h:401)
+  n1: 64836 0x401955: new_block_index (concurrentqueue.h:2957)
+   n1: 64836 0x401955: insert_block_index_entry<(moodycamel::ConcurrentQueue<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>::AllocationMode<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>)0> (concurrentqueue.h:2907)
+    n1: 64836 0x401955: enqueue<(moodycamel::ConcurrentQueue<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>::AllocationMode<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>)0, req_tuple* const&> (concurrentqueue.h:2489)
+     n1: 64836 0x401955: inner_enqueue<(moodycamel::ConcurrentQueue<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>::AllocationMode<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>)0, req_tuple* const&> (concurrentqueue.h:1362)
+      n1: 64836 0x401955: enqueue (concurrentqueue.h:984)
+       n1: 64836 0x401955: operator() (example_2.cc:42)
+        n1: 64836 0x401955: __invoke_impl<void, main(int, char**)::<lambda(int)>, int> (invoke.h:60)
+         n1: 64836 0x401955: __invoke<main(int, char**)::<lambda(int)>, int> (invoke.h:95)
+          n1: 64836 0x401955: _M_invoke<0, 1> (thread:264)
+           n1: 64836 0x401955: operator() (thread:271)
+            n1: 64836 0x401955: std::thread::_State_impl<std::thread::_Invoker<std::tuple<main::{lambda(int)#2}, int> > >::_M_run() (thread:215)
+             n1: 64836 0x4976C4F: ??? (in /nix/store/dd8swlwhpdhn6bv219562vyxhi8278hs-gcc-10.3.0-lib/lib/libstdc++.so.6.0.28)
+              n1: 64836 0x4888D3F: start_thread (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libpthread-2.33.so)
+               n0: 64836 0x4CCE03E: clone (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libc-2.33.so)
+ n1: 50840 0x401B9E: malloc (concurrentqueue.h:401)
+  n1: 50840 0x401B9E: aligned_malloc<moodycamel::ConcurrentQueue<req_tuple*>::Block> (concurrentqueue.h:3585)
+   n1: 50840 0x401B9E: create<moodycamel::ConcurrentQueue<req_tuple*>::Block> (concurrentqueue.h:3633)
+    n1: 50840 0x401B9E: requisition_block<(moodycamel::ConcurrentQueue<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>::AllocationMode<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>)0> (concurrentqueue.h:3095)
+     n1: 50840 0x401B9E: enqueue<(moodycamel::ConcurrentQueue<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>::AllocationMode<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>)0, req_tuple* const&> (concurrentqueue.h:2494)
+      n1: 50840 0x401B9E: inner_enqueue<(moodycamel::ConcurrentQueue<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>::AllocationMode<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>)0, req_tuple* const&> (concurrentqueue.h:1362)
+       n1: 50840 0x401B9E: enqueue (concurrentqueue.h:984)
+        n1: 50840 0x401B9E: operator() (example_2.cc:42)
+         n1: 50840 0x401B9E: __invoke_impl<void, main(int, char**)::<lambda(int)>, int> (invoke.h:60)
+          n1: 50840 0x401B9E: __invoke<main(int, char**)::<lambda(int)>, int> (invoke.h:95)
+           n1: 50840 0x401B9E: _M_invoke<0, 1> (thread:264)
+            n1: 50840 0x401B9E: operator() (thread:271)
+             n1: 50840 0x401B9E: std::thread::_State_impl<std::thread::_Invoker<std::tuple<main::{lambda(int)#2}, int> > >::_M_run() (thread:215)
+              n1: 50840 0x4976C4F: ??? (in /nix/store/dd8swlwhpdhn6bv219562vyxhi8278hs-gcc-10.3.0-lib/lib/libstdc++.so.6.0.28)
+               n1: 50840 0x4888D3F: start_thread (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libpthread-2.33.so)
+                n0: 50840 0x4CCE03E: clone (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libc-2.33.so)
+ n1: 23932 0x40187C: operator() (example_2.cc:41)
+  n1: 23932 0x40187C: __invoke_impl<void, main(int, char**)::<lambda(int)>, int> (invoke.h:60)
+   n1: 23932 0x40187C: __invoke<main(int, char**)::<lambda(int)>, int> (invoke.h:95)
+    n1: 23932 0x40187C: _M_invoke<0, 1> (thread:264)
+     n1: 23932 0x40187C: operator() (thread:271)
+      n1: 23932 0x40187C: std::thread::_State_impl<std::thread::_Invoker<std::tuple<main::{lambda(int)#2}, int> > >::_M_run() (thread:215)
+       n1: 23932 0x4976C4F: ??? (in /nix/store/dd8swlwhpdhn6bv219562vyxhi8278hs-gcc-10.3.0-lib/lib/libstdc++.so.6.0.28)
+        n1: 23932 0x4888D3F: start_thread (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libpthread-2.33.so)
+         n0: 23932 0x4CCE03E: clone (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libc-2.33.so)
+ n1: 10496 0x401289: malloc (concurrentqueue.h:401)
+  n1: 10496 0x401289: aligned_malloc<moodycamel::ConcurrentQueue<req_tuple*>::Block> (concurrentqueue.h:3585)
+   n1: 10496 0x401289: create_array<moodycamel::ConcurrentQueue<req_tuple*>::Block> (concurrentqueue.h:3610)
+    n1: 10496 0x401289: populate_initial_block_list (concurrentqueue.h:3033)
+     n1: 10496 0x401289: populate_initial_block_list (concurrentqueue.h:3025)
+      n1: 10496 0x401289: ConcurrentQueue (concurrentqueue.h:808)
+       n0: 10496 0x401289: main (example_2.cc:14)
+ n0: 4502 in 7 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=74
+#-----------
+time=52468994929
+mem_heap_B=428174
+mem_heap_extra_B=272714
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=75
+#-----------
+time=52469226200
+mem_heap_B=485422
+mem_heap_extra_B=327250
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=76
+#-----------
+time=52469457444
+mem_heap_B=512822
+mem_heap_extra_B=349530
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=77
+#-----------
+time=52469688704
+mem_heap_B=467142
+mem_heap_extra_B=300130
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=78
+#-----------
+time=52469919963
+mem_heap_B=414958
+mem_heap_extra_B=250466
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=79
+#-----------
+time=52470151189
+mem_heap_B=363102
+mem_heap_extra_B=200834
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=80
+#-----------
+time=52470382448
+mem_heap_B=310918
+mem_heap_extra_B=151186
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=81
+#-----------
+time=52470613674
+mem_heap_B=259062
+mem_heap_extra_B=101554
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=82
+#-----------
+time=52470844933
+mem_heap_B=206878
+mem_heap_extra_B=51906
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=83
+#-----------
+time=52471076159
+mem_heap_B=155022
+mem_heap_extra_B=2274
+mem_stacks_B=0
+heap_tree=detailed
+n5: 155022 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 72704 0x494A3A5: ??? (in /nix/store/dd8swlwhpdhn6bv219562vyxhi8278hs-gcc-10.3.0-lib/lib/libstdc++.so.6.0.28)
+  n1: 72704 0x400FBCD: call_init (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/ld-2.33.so)
+   n1: 72704 0x400FCB3: _dl_init (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/ld-2.33.so)
+    n0: 72704 0x4001089: ??? (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/ld-2.33.so)
+ n1: 64836 0x401955: malloc (concurrentqueue.h:401)
+  n1: 64836 0x401955: new_block_index (concurrentqueue.h:2957)
+   n1: 64836 0x401955: insert_block_index_entry<(moodycamel::ConcurrentQueue<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>::AllocationMode<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>)0> (concurrentqueue.h:2907)
+    n1: 64836 0x401955: enqueue<(moodycamel::ConcurrentQueue<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>::AllocationMode<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>)0, req_tuple* const&> (concurrentqueue.h:2489)
+     n1: 64836 0x401955: inner_enqueue<(moodycamel::ConcurrentQueue<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>::AllocationMode<req_tuple*, moodycamel::ConcurrentQueueDefaultTraits>)0, req_tuple* const&> (concurrentqueue.h:1362)
+      n1: 64836 0x401955: enqueue (concurrentqueue.h:984)
+       n1: 64836 0x401955: operator() (example_2.cc:42)
+        n1: 64836 0x401955: __invoke_impl<void, main(int, char**)::<lambda(int)>, int> (invoke.h:60)
+         n1: 64836 0x401955: __invoke<main(int, char**)::<lambda(int)>, int> (invoke.h:95)
+          n1: 64836 0x401955: _M_invoke<0, 1> (thread:264)
+           n1: 64836 0x401955: operator() (thread:271)
+            n1: 64836 0x401955: std::thread::_State_impl<std::thread::_Invoker<std::tuple<main::{lambda(int)#2}, int> > >::_M_run() (thread:215)
+             n1: 64836 0x4976C4F: ??? (in /nix/store/dd8swlwhpdhn6bv219562vyxhi8278hs-gcc-10.3.0-lib/lib/libstdc++.so.6.0.28)
+              n1: 64836 0x4888D3F: start_thread (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libpthread-2.33.so)
+               n0: 64836 0x4CCE03E: clone (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libc-2.33.so)
+ n1: 10496 0x401289: malloc (concurrentqueue.h:401)
+  n1: 10496 0x401289: aligned_malloc<moodycamel::ConcurrentQueue<req_tuple*>::Block> (concurrentqueue.h:3585)
+   n1: 10496 0x401289: create_array<moodycamel::ConcurrentQueue<req_tuple*>::Block> (concurrentqueue.h:3610)
+    n1: 10496 0x401289: populate_initial_block_list (concurrentqueue.h:3033)
+     n1: 10496 0x401289: populate_initial_block_list (concurrentqueue.h:3025)
+      n1: 10496 0x401289: ConcurrentQueue (concurrentqueue.h:808)
+       n0: 10496 0x401289: main (example_2.cc:14)
+ n0: 4554 in 9 places, all below massif's threshold (1.00%)
+ n1: 2432 0x4012B47: _dl_allocate_tls (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/ld-2.33.so)
+  n1: 2432 0x4889A6A: pthread_create@@GLIBC_2.2.5 (in /nix/store/65hafbsx91127farbmyyv4r5ifgjdg43-glibc-2.33-117/lib/libpthread-2.33.so)
+   n2: 2432 0x4976EC4: std::thread::_M_start_thread(std::unique_ptr<std::thread::_State, std::default_delete<std::thread::_State> >, void (*)()) (in /nix/store/dd8swlwhpdhn6bv219562vyxhi8278hs-gcc-10.3.0-lib/lib/libstdc++.so.6.0.28)
+    n1: 2128 0x40142B: thread<main(int, char**)::<lambda(int)>, int&> (thread:149)
+     n0: 2128 0x40142B: main (example_2.cc:37)
+    n0: 304 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=84
+#-----------
+time=145763468635
+mem_heap_B=152498
+mem_heap_extra_B=238
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=85
+#-----------
+time=146167470973
+mem_heap_B=151858
+mem_heap_extra_B=214
+mem_stacks_B=0
+heap_tree=empty

@@ -1,0 +1,50 @@
+export project_dir = $(realpath $(shell pwd)/..)
+export eRPC_dir = $(realpath $(shell pwd)/../eRPC)
+export YCSB 	= $(realpath $(shell pwd)/../ycsb_generator)
+export KV	= $(realpath $(shell pwd)/../concurrent_skiplist)
+export APP 	= $(realpath $(shell pwd))
+export DPDK 	= ${eRPC_dir}/dpdk_scone/x86_64-native-linuxapp-gcc
+export fmt	= ${project_dir}/fmt
+export CXX          = g++
+export FOLLY        = ${project_dir}/SCONE_deps/folly
+export SCONE_deps   = ${project_dir}/SCONE_deps
+
+
+
+INCLUDES_PATH 	= -I${project_dir}/AllConcur -I${SCONE_deps}/include -I${FOLLY} -I${FOLLY}/_build -I/usr/local/include -I${project_dir}/openssl/include -I${project_dir}/encryption_lib -I${eRPC_dir}/src -I${DPDK}/include -I${fmt}/include -I${KV} -I${project_dir} -I${YCSB}
+
+CXXFLAGS 	= -g -O3 -std=c++17 -fno-omit-frame-pointer -Wno-attributes -Wno-unused-parameter -Wno-unused-variable -Wno-pedantic -march=native -DRTE_MACHINE_CPUFLAG_SSE -DRTE_MACHINE_CPUFLAG_SSE2 -DRTE_MACHINE_CPUFLAG_SSE3 -D RTE_MACHINE_CPUFLAG_SSSE3 -DRTE_MACHINE_CPUFLAG_SSE4_1 -DRTE_MACHINE_CPUFLAG_SSE4_2 -DSCONE -DFOLLOWER_WORKLOAD -DENCRYPTION -DNO_CIPHER #-fsanitize=address
+
+LDFLAGS_PATH 	= -L${SCONE_deps}/lib -L${FOLLY}/_build -L${eRPC_dir}/build -L${project_dir}/openssl/lib -L${DPDK}/lib -L/usr/local/lib -L${fmt}/build
+
+LD_FLAGS	= -lcrypto -ldl -lrt -lpthread -lcityhash -lfmt -lglog -lfolly -ldouble-conversion #-fsanitize=address
+LIBS 		= -lerpc -lnuma -Wl,--whole-archive -ldpdk -Wl,--no-whole-archive -lrte_ethdev -Wl,-lrte_port
+
+
+SRC_FILES 	= ${APP}/req_handlers.cc \
+		  ${APP}/cipher.cc	 \
+		  ${APP}/allconcur_func.cc	 \
+		  ${YCSB}/generate_traces.cc	\
+		  ${KV}/memtable.cpp	\
+		  ${APP}/rate_limiter.cc
+
+
+
+.PHONY 		= all
+
+
+all: target
+
+target: node0_donna_SCONE node1_rose_SCONE node2_martha_SCONE
+
+node0_donna_SCONE:
+	g++ -DERPC_DPDK=true ${CXXFLAGS} ${INCLUDES_PATH} ${SRC_FILES} ${APP}/node0.cc ${LDFLAGS_PATH} ${LIBS} ${LD_FLAGS} -o $@
+
+node1_rose_SCONE:
+	g++ -DERPC_DPDK=true ${CXXFLAGS} ${INCLUDES_PATH} ${SRC_FILES} ${APP}/node1.cc ${LDFLAGS_PATH} ${LIBS} ${LD_FLAGS} -o $@
+
+node2_martha_SCONE:
+	g++ -DERPC_DPDK=true ${CXXFLAGS} ${INCLUDES_PATH} ${SRC_FILES} ${APP}/node2.cc ${LDFLAGS_PATH} ${LIBS} ${LD_FLAGS} -o $@
+
+clean: 
+	rm -f node0_donna_SCONE node1_rose_SCONE node2_martha_SCONE
