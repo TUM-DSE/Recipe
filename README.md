@@ -15,14 +15,14 @@ You can find more details in our [Middleware'25 paper](TBA).
 
 ## Artifact
 
-Recipe project is available in the following repositories:
+Recipe project is available in the following directories:
 
-[Recipe-protocols](https://github.com/TUM-DSE/recipe-protocols.git) which contains the implemented protocols.
+protocols which contains the implemented protocols and the Recipe-lib.
 
-[Recipe-proofs](https://github.com/TUM-DSE/recipe-proofs.git) which contains the security proofs of Recipe.
+proofs which contains the security proofs of Recipe.
 
 
 ## Full paper 
 
-This repository also contains [the full version of the paper](https://arxiv.org/pdf/2502.09251) which is a more detailed technical report of our work.
+This repository also links to [the full version of the paper](https://arxiv.org/pdf/2502.09251) which is a more detailed technical report of our work.
 
