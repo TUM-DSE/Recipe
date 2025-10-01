@@ -1,0 +1,18 @@
+
+==============================================================================
+summary of summaries:
+
+analyzed: recipe_protocols.spthy
+
+  output:          proofs/recipe_protocols_analyzed.spthy
+  processing time: 201.66s
+  
+  sanity_complete_attestation_phase (exists-trace): verified (9 steps)
+  sanity_complete_accept_message (exists-trace): verified (32 steps)
+  sensitive_info_stays_secret (all-traces): verified (16 steps)
+  verified_msg_is_auth (all-traces): verified (1918 steps)
+  no_lost_messages (all-traces): verified (2 steps)
+  no_message_reordering (all-traces): verified (1 steps)
+  no_double_messages (all-traces): verified (2 steps)
+
+==============================================================================

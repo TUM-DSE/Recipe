@@ -1,0 +1,495 @@
+/*
+ *  Protocol:   Recipe Protocols
+ *  Date:       Feb 2025
+ *  Source:     "Recipe: Hardware-Accelerated Replication Protocols"
+ *  Comments:   Run with: tamarin-prover --prove recipe_protocols.spthy
+ */
+
+theory RecipeProtocols
+
+begin
+
+builtins: 
+    hashing,                 // adds: h/1 
+    symmetric-encryption,    // adds: senc/2, sdec/2
+    asymmetric-encryption,   // adds: aenc/2, adec/2, pk/1
+    signing,                 // adds: sign/2, verify/3, pk/1
+    natural-numbers          // adds: %1, %+ 
+
+functions:
+    get_secrets/1,           // retrieves the secrets of a configuration
+    get_key/3,                // retrieves the symmetric key from secrets
+
+    signed_hash/2                 
+
+
+// Helper restriction to limit the analysis to single instances
+restriction unique:
+  "All x #i #j. Unique(x) @#i & Unique(x) @#j ==> #i = #j"
+
+// Helper restriction to limit the use of facts for different pruposes
+restriction consistent:
+  "All x y z #i #j. Consistent(x, y) @#i & Consistent(x, z) @#j ==> y = z"
+
+// Helper restriction to limit genuine processes so they adhere to phase transistions
+restriction unless_completed:
+  "All x #i #j. UnlessCompleted(x) @#i & Complete(x) @#j ==> #i < #j | #i = #j"
+
+/************************************/
+/* Secure Channel Abstraction (TLS) */
+/************************************/
+
+rule establish_TLS_connection:
+    [ Fr(~key_tls), In(a), In(b) ]
+    --[ 
+        _restrict(not(a = b)), 
+        TLSConnection(a,b,~key_tls), 
+        TLSConnection(a,b,~key_tls),
+        NewSensitiveInformation('TLS symmetric key', ~key_tls) 
+    ]->
+    [ 
+        TLSConnection(a,b,~key_tls), 
+        TLSConnection(b,a,~key_tls),
+        !SensitiveInformation('TLS symmetric key', ~key_tls)
+    ]
+
+/************************************/
+/* Model Setup                      */
+/************************************/
+
+// Initializes a new TEE with fresh secrets
+rule startup_TEE:
+    [ Fr(~TEE_priv) ]
+    --[ 
+        Unique(<'TEE', $TEE>), 
+        Consistent(<'role', $TEE>, 'TEE'), 
+        NewSensitiveInformation('TEE private key', ~TEE_priv)
+    ]->
+    [ 
+        !PubTEE($TEE, pk(~TEE_priv)),
+        !StateTEE($TEE, ~TEE_priv),
+        !SensitiveInformation('TEE private key', ~TEE_priv)
+    ]
+
+// Starts a new process on a TEE server
+rule startup_process:
+    [ 
+        !StateTEE($TEE, ~TEE_priv),
+        In(process)
+    ]
+    --[ Consistent(<'role', process>, 'process') ]->
+    [ !StateProc($TEE, process) ]
+
+// Creates a new Configuration and Attestation Service
+rule startup_CAS:
+    [ ]
+    --[ Consistent(<'role', $CAS>, 'CAS') ]->
+    [ !StateCAS($CAS) ]
+
+// Creates a new protocol designer
+rule startup_PD:
+    [ ]
+    --[ Consistent(<'role', $PD>, 'PD') ]->
+    [ !StatePD($PD) ]
+
+/************************************/
+/* Transferable authentication      */
+/************************************/
+
+// Secure channels (TLS) are established implicitly before the first use.
+
+// Protocol Designer: Sends attestation request
+rule trans_auth_A2:
+    [ 
+        !StatePD($PD), 
+        TLSConnection($PD, $CAS, key_tls),
+        Fr(~expected_state) 
+    ]
+    --[
+        NewSensitiveInformation('expected state', ~expected_state)
+    ]->
+    [ 
+        Out(senc{<'attest request', ~expected_state>}key_tls),
+        StatePD_A2($PD, $CAS, key_tls, ~expected_state),
+        !SensitiveInformation('expected state', ~expected_state)
+    ]
+
+// CAS: Recieves attestation request and starts attestation phase
+rule trans_auth_A3_1:
+    [ 
+        !StateCAS($CAS),
+        TLSConnection($CAS, $PD, key_tls),
+        In(senc{<'attest request', expected_state>}key_tls)
+    ]
+    -->
+    [ !StateCAS_A3($CAS, $PD, key_tls, expected_state) ]
+
+// CAS: Requests quote from process
+rule trans_auth_A3_2:
+    [
+        !StateCAS_A3($CAS, $PD, pd_key_tls, expected_state), 
+        TLSConnection($CAS, $Proc, key_tls)
+    ] 
+    --[
+        IsPartOf($Proc, expected_state),
+        Unique(<'local attest request', $Proc, expected_state>),
+        UnlessCompleted(<'attestation phase', expected_state>)
+    ]-> 
+    [
+        Out(senc{<'local attest request'>}key_tls),
+        StateCAS_A3_quoteExpected($CAS, $Proc, key_tls, expected_state)
+    ]
+
+// TEE: performs local attestaion and replies with quote
+rule trans_auth_A4_A5:
+    [
+        !StateTEE($TEE, TEE_priv),
+        !StateProc($TEE, proc), 
+        TLSConnection(proc, $CAS, key_tls),
+        In(senc{<'local attest request'>}key_tls)
+    ] 
+    --> 
+    [
+        Out(senc{<'local attest response', sign{proc}TEE_priv>}key_tls),
+        StateProc_A4($TEE, proc, key_tls)
+    ]
+
+// CAS: Verifies quote
+rule trans_auth_A6:
+    [
+        StateCAS_A3_quoteExpected($CAS, $Proc, key_tls, expected_state),
+        !PubTEE($TEE, TEE_pub),
+        In(senc{<'local attest response', quote>}key_tls)
+    ] 
+    --[
+        _restrict( verify(quote, $Proc, TEE_pub) = true ),
+        IsTrusted($Proc, expected_state),
+        UnlessCompleted(<'attestation phase', expected_state>)
+    ]-> 
+    [   
+        StateCAS_A6($CAS, $Proc, key_tls, expected_state),
+        PotenialLeader(expected_state, $Proc)
+    ]
+
+// CAS: Completes the attestation of all processes
+rule trans_auth_A7_1:
+    [
+        !StateCAS_A3($CAS, $PD, key_tls, expected_state),
+        PotenialLeader(expected_state, $Proc)
+    ] 
+    --[
+        UnlessCompleted(<'attestation phase', expected_state>),
+        Complete(<'attestation phase', expected_state>),
+        Leader(expected_state, $Proc)
+    ]-> 
+    [
+        Out(senc{<'attestation completed', $Proc>}key_tls)
+    ]
+
+// Attestation only succeeds if trust is established for all processes that are part of the expected state
+restriction trans_auth_A7_validation:
+"
+    All s #i. 
+        Complete(<'attestation phase', s>) @ #i 
+        ==> (
+            All p #j.
+                IsPartOf(p, s) @ #j
+                ==>
+                ( Ex #k. IsTrusted(p, s) @ #k & #k < #i )
+        )
+"
+
+// Protocol Developer: Is informed about the sucessful attestation & shares secrets
+rule trans_auth_A7_2:
+    [
+        StatePD_A2($PD, $CAS, key_tls, expected_state),
+        In(senc{<'attestation completed', $Proc>}key_tls)
+    ] 
+    --> 
+    [
+        !StatePD_A7($PD, $CAS, expected_state, $Proc)
+    ]
+
+rule trans_auth_A8:
+    [
+        StateCAS_A6($CAS, $Proc, key_tls, expected_state)
+    ] 
+    --[
+        ShareSecrets(expected_state)
+    ]-> 
+    [
+        Out(senc{<'secrets', get_secrets(expected_state)>}key_tls)
+    ]
+
+// Secrets are only shared after attestation
+restriction trans_auth_A8_validation:
+"   
+    All s #i.
+        ShareSecrets(s) @ #i
+        ==> 
+        ( Ex #j. Complete(<'attestation phase', s>) @ #j & #i < #j )
+"
+
+/************************************/
+/* Initialization                   */
+/************************************/
+
+rule init_proc_1:
+    [
+        StateProc_A4($TEE, proc, key_tls),
+        In(senc{<'secrets', secrets>}key_tls)
+    ] 
+    --> 
+    [ !InitializedProc($TEE, proc, secrets) ]
+
+rule init_proc_2:
+    [
+        !InitializedProc($TEE, $Proc, secrets)
+    ] 
+    --[
+        _restrict(not($Proc = $Proc2)),
+        Unique(<'counter setup', secrets, $Proc, $Proc2>),
+        SetupCounter(secrets, $Proc, $Proc2)
+    ]-> 
+    [ 
+        RECIPE_RecvCounter(secrets, $Proc, $Proc2, %1),
+        RECIPE_SendCounter(secrets, $Proc, $Proc2, %1)
+    ]
+
+// Counters are only set up for processes in configuration
+restriction init_proc_2_validation:
+"   
+    All s p1 p2 #i.
+        SetupCounter(get_secrets(s), p1, p2) @ #i
+        ==> 
+        ( Ex #j #k. IsPartOf(p1, s) @ #j & IsPartOf(p2, s) @ #k )
+"
+
+/************************************/
+/* Execution                        */
+/************************************/
+
+// Models the sending of an arbitrary message using the RECIPE's attestation algorithm as presented in the paper.
+// The message is attested and sent inside the sessions secure channel.
+rule send_msg:
+    let
+        %cnt = %send_cnt
+        skey = get_key(secrets, $RECIPE_SEND, $RECIPE_RECV)
+        a = signed_hash(skey, <~msg, %cnt>)
+    in
+    [ 
+        Fr(~msg),
+
+        RECIPE_SendCounter(secrets, $RECIPE_SEND, $RECIPE_RECV, %send_cnt)
+    ]
+    --[ 
+        RECIPESendMsg(secrets, $RECIPE_SEND, $RECIPE_RECV, ~msg),
+        RECIPESendMsgCtr(secrets, $RECIPE_SEND, $RECIPE_RECV, ~msg, %send_cnt),
+        RECIPESendCtr(secrets, $RECIPE_SEND, $RECIPE_RECV, %send_cnt)
+    ]->
+    [  
+        RECIPE_SendCounter(secrets, $RECIPE_SEND, $RECIPE_RECV, %send_cnt %+ %1),
+        
+        Out(senc{a, ~msg, %cnt}skey)
+    ]
+
+// Restrict the message attestation to guarantee the session counters are increased (no overflow).
+restriction send_ctr_increasing:
+    "
+        All secrets recipe1 recipe2 ctr1 ctr2 #i #j.
+            RECIPESendCtr(secrets, recipe1, recipe2, ctr1) @ #i
+            & RECIPESendCtr(secrets, recipe1, recipe2, ctr2) @ #j
+            & (#i < #j)
+        ==> (Smaller(ctr1, ctr2))
+    "
+
+// Models the recieving of an arbitrary message using the RECIPE's verification algorithm as presented in the paper.
+// The recieved inside the sessions secure channel and verified before being accepted.
+rule recv_msg:
+    let
+        skey = get_key(secrets, $RECIPE_SEND, $RECIPE_RECV)
+        a_prime = signed_hash(skey, <msg, %cnt>)
+    in
+    [ 
+        In(senc{a, msg, %cnt}skey),
+
+        RECIPE_RecvCounter(secrets, $RECIPE_RECV, $RECIPE_SEND, %recv_cnt)
+    ]
+    --[ 
+        _restrict(a_prime = a),
+        _restrict(%cnt = %recv_cnt),
+
+        RECIPEAcceptMsg(secrets, $RECIPE_SEND, $RECIPE_RECV, msg),
+        RECIPERecvCounter(secrets, $RECIPE_RECV, $RECIPE_SEND, %recv_cnt)
+    ]->
+    [ 
+        RECIPE_RecvCounter(secrets, $RECIPE_RECV, $RECIPE_SEND, %recv_cnt %+ %1)
+    ]
+
+// Restrict the message attestation to guarantee the session counters are increased (no overflow).
+restriction recv_ctr_increasing:
+    "
+        All secrets recipe1 recipe2 ctr1 ctr2 #i #j.
+            RECIPERecvCounter(secrets, recipe1, recipe2, ctr1) @ #i
+            & RECIPERecvCounter(secrets, recipe1, recipe2, ctr2) @ #j
+            & (#i < #j)
+            ==> (Smaller(ctr1, ctr2))
+    "
+
+/************************************/
+/* Secret Compromises               */
+/************************************/
+
+// Models a general attack that compromises some sensitive information
+rule compromise_recipe_private_key:
+    [ 
+        !SensitiveInformation(type, information)
+    ]
+    --[
+        Compromised(type, information)
+    ]->
+    [ 
+        Out(information)
+    ]
+
+/************************************/
+/* Lemmas                           */
+/************************************/
+
+lemma sanity_complete_attestation_phase:
+exists-trace
+"
+    ( not (Ex type info #i. Compromised(type, info) @ #i) )
+    &
+    (
+        Ex s #j. Complete(<'attestation phase', s>) @ #j
+    )
+"
+
+lemma sanity_complete_accept_message:
+exists-trace
+"
+    ( not (Ex type info #i. Compromised(type, info) @ #i) )
+    &
+    (
+        Ex s recipe_a recipe_b msg #j.
+            RECIPEAcceptMsg(get_secrets(s), recipe_a, recipe_b, msg) @ #j
+    )
+"
+
+/*
+This lemma ensures that the attacker is unable to obtain sensitive information from the protocol.
+Unless the information, or one of the TLS keys was previously compromized.
+*/
+lemma sensitive_info_stays_secret [reuse]:
+"
+    All type info #i #k.
+        (
+            NewSensitiveInformation(type, info) @ #i
+            & K(info) @ #k
+        )
+        ==>
+        (
+            (Ex #c. (#c < #k) & Compromised(type, info) @ #c)
+            |
+            (Ex x #c. (#c < #k) & Compromised('TLS symmetric key', x) @ #c)
+        )
+"
+
+/*
+This lemma helps to reason about transferable authentication, by ensuring that each message
+that is successfully accepted by a RECIPE device is sent by a genuine RECIPE device assuming
+the hardware of the RECIPE devices was not compromised.
+*/
+lemma verified_msg_is_auth[heuristic=O "./recipe_oracle.py"]:
+"
+    ( not (Ex type info #i. Compromised(type, info) @ #i) )
+    ==> (
+        All s recipe_a recipe_b msg #j #t1.
+            RECIPEAcceptMsg(get_secrets(s), recipe_a, recipe_b, msg) @ #j
+            & IsTrusted(recipe_b, s) @ #t1
+        ==> 
+        (
+            Ex #k #l. 
+                IsTrusted(recipe_a, s) @ #k
+                & RECIPESendMsg(get_secrets(s), recipe_a, recipe_b, msg) @ #l
+                & (#k < #l)
+                & (#l < #j)
+        )
+    )
+"
+
+/*
+This lemma helps to reason about non-equivocation, by ensuring
+that for all messages that are successfully accepted by a genuine RECIPE device there are 
+no messages that were sent before but not accepted by the same RECIPE device.
+*/
+lemma no_lost_messages[heuristic=O "./recipe_oracle.py"]:
+"
+    ( not (Ex type info #i. Compromised(type, info) @ #i) )
+    ==> ( 
+        All secrets recipe_a recipe_b msg ctr #i #j.
+        (
+            RECIPEAcceptMsg(secrets, recipe_a, recipe_b, msg) @ #i
+            & RECIPESendMsgCtr(secrets, recipe_a, recipe_b, msg, ctr) @ #j
+        )
+        ==>
+        (
+            All msg2 ctr2 #k.
+            (
+                Smaller(ctr2, ctr)
+                & RECIPESendMsgCtr(secrets, recipe_a, recipe_b, msg2, ctr2) @ #k
+            )
+            ==>
+            (
+                Ex #l.
+                    RECIPEAcceptMsg(secrets, recipe_a, recipe_b, msg) @ #l
+                    & (#l < #i)
+            )
+        )
+    )
+"
+
+/*
+This lemma helps to reason about non-equivocation, by ensuring
+that for all messages that are sucessfully accepted by a genuine RECIPE device there are 
+no messages that were sent after that message but accepted before.
+*/
+lemma no_message_reordering[heuristic=O "./recipe_oracle.py"]:
+"
+    ( not (Ex type info #i. Compromised(type, info) @ #i) )
+    ==> ( 
+        All secrets recipe_a recipe_b msg1 msg2 #i #j.
+        ( 
+            RECIPEAcceptMsg(secrets, recipe_a, recipe_b, msg1) @ #i
+            & RECIPEAcceptMsg(secrets, recipe_a, recipe_b, msg2) @ #j
+            & (#i < #j)
+        )
+        ==>
+        (
+            Ex #k #l.
+                RECIPESendMsg(secrets, recipe_a, recipe_b, msg1) @ #k
+                & RECIPESendMsg(secrets, recipe_a, recipe_b, msg2) @ #l
+                & (#k < #l)
+        )
+    )
+"
+
+/*
+This lemma helps to reason about non-equivocation, by ensuring
+that a genuine RECIPE device does not accept the same message multiple times.
+*/
+lemma no_double_messages[heuristic=O "./recipe_oracle.py"]:
+"
+    ( not (Ex type info #i. Compromised(type, info) @ #i) )
+    ==> ( 
+        All secrets recipe_a recipe_b msg #i #j.
+        ( 
+            RECIPEAcceptMsg(secrets, recipe_a, recipe_b, msg) @ #i
+            & RECIPEAcceptMsg(secrets, recipe_a, recipe_b, msg) @ #j
+        )
+        ==> (#i = #j)
+    )
+"
+
+end
