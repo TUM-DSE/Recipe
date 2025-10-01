@@ -1,0 +1,9 @@
+- build cityhash (make)
+- build fmt (make)
+- build openssl (make -f Makefile_openssl1)
+- build double-conversion (SCONE_deps/double-conversion)
+- sudo apt-get install libevent-dev libnuma-dev libgflags-dev libgoogle-glog-dev libboost-dev
+- build folly
+- sudo cp /usr/local/lib/lib* /usr/lib/x86_64-linux-gnu/
+-
+- # not scone related but for profiling natively in NixOS (/run/current-system/sw/bin/profile)
