@@ -67,9 +67,11 @@ Important note: reserve and configure "enough" hugepages-memory as eRPC and allo
 
 
 ### Code structure
+
+Please note that our codebase is a PoW of our system. It is not designed to be used in production and heavy refactoring might be of great use before using it.
 - One folder for each of the implemented protocols (AllConcur, Raft, CR). We reused the core implementation of ABD from this project (https://github.com/mbailleu/avocado).
-- The direct I/O networking is on eRPC with dpdk and dpdk_scone as backends.
-- The allocator is in  host_allocator directory and the KV store is in concurrent_skiplist folder
-- The encryption_library and enc_lib_test contain the Openssl-based implementations for the authentication layer and the ratelim.h contains the requests' rate limiter.
-- setup_instructions.md contains SCONE dependencies.
-- Lastly, for each protocol there is a config.h (for each change a re-compilation is required) for the configurations like: IPs, workloadtype, msg/value size, threads, etc.
+- The direct I/O networking is on `eRPC` with `dpdk` and `dpdk_scone` as backends.
+- The allocator is in  `host_allocator` directory and the KV store is in `concurrent_skiplist` folder
+- The e`ncryption_library` and `enc_lib_test` contain the `OpenSSL`-based implementations for the authentication layer and the `ratelim.h` contains the requests' rate limiter.
+- `setup_instructions.md` contains SCONE dependencies.
+- Lastly, for each protocol there is a configuration file (`common_conf.h`/`config.h`) (for each change a re-compilation is required) for the configurations like: IPs, workloadtype, msg/value size, threads, etc.
