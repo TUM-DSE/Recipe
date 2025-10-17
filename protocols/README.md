@@ -20,6 +20,22 @@ Interconnect
 `40GbE`
 
 
+## System setup 
+
+We pin port-1 to DPDK-driver (`igb_uio`) in all servers we want to use. Note, it should only be port-1 in this cluster as we have the NFS mounted on port-0!
+
+The script can be found in the DPDK codebase which you can get online as explain next.
+
+```sh
+sudo python dpdk-devbind.py --bind=igb_uio 0000:01:00.1/enp1s0f1
+```
+
+You can find the correct interfaces to bind with
+
+```sh
+sudo python dpdk-devbind.py --status 
+```
+
 ### How to build and run?
 
 We used an internal development version of SCONE, we have not tested it with the publicly available version.
@@ -32,10 +48,20 @@ Build DPDK and eRPC. In eRPC/build directory;
 
 - and then just `make` which builds the library (.a).
 
-For each of the protocols you can `make -D..` the binary and set the appropriate flags. For example: `-DSCONE_ALLOC` to enable the custom host-memory allocator in SCONE, `-DGMAC/ENCRYPTION` for enabling the Authenticated messages (and encrypted version respectively). Other flags includes enabling the KV store (KV), CityHash, SHA256, etc.
+For each of the protocols you can build the binary with `make -D<flags>` and set the appropriate flags. For example: `-DSCONE_ALLOC` to enable the custom host-memory allocator in SCONE, `-DGMAC/ENCRYPTION` for enabling the Authenticated messages (and encrypted version respectively). Other flags includes enabling the KV store (KV), CityHash, SHA256, etc.
+
+The binaries would be build in the current folder.
+
+Note: In our systems, we could only properly link the applications with the following linking flags that need to be added to any Makefile
+
+```sh
+-Wl,--whole-archive -ldpdk -Wl,--no-whole-archive -lrte_ethdev -Wl,-lrte_port
+```
 
 To run the code in SCONE:
-`sudo -E Hugepagesize=2097152 LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/ SCONE_VERSION=1 SCONE_LOG=7 SCONE_NO_FS_SHIELD=1 SCONE_NO_MMAP_ACCESS=1 SCONE_HEAP=3584M SCONE_LD_DEBUG=1 /opt/scone/lib/ld-scone-x86_64.so.1 <program_name>`
+`sudo -E Hugepagesize=2097152 LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/ SCONE_VERSION=1 SCONE_LOG=7 SCONE_NO_FS_SHIELD=1 SCONE_NO_MMAP_ACCESS=1 SCONE_HEAP=3584M SCONE_LD_DEBUG=1 /opt/scone/lib/ld-scone-x86_64.so.1 <program_name> <program_args>`
+
+For each protocol you need to configure the correct IPs on the including `common_conf.h` file.
 
 Important note: reserve and configure "enough" hugepages-memory as eRPC and allocator both use it.
 
@@ -45,5 +71,5 @@ Important note: reserve and configure "enough" hugepages-memory as eRPC and allo
 - The direct I/O networking is on eRPC with dpdk and dpdk_scone as backends.
 - The allocator is in  host_allocator directory and the KV store is in concurrent_skiplist folder
 - The encryption_library and enc_lib_test contain the Openssl-based implementations for the authentication layer and the ratelim.h contains the requests' rate limiter.
-- SCONE_instructions.md contains SCONE dependencies.
+- setup_instructions.md contains SCONE dependencies.
 - Lastly, for each protocol there is a config.h (for each change a re-compilation is required) for the configurations like: IPs, workloadtype, msg/value size, threads, etc.
